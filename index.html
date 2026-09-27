@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Banking System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+
+        <div class="logo">
+            <span>🏦</span> SecureBank
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#account">Account</a>
+            <a href="#transactions">Transactions</a>
+            <a href="#passbook">Passbook</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+
+            <p class="small-title">WELCOME TO SECUREBANK</p>
+
+            <h1>
+                Simple, Secure &
+                <span>Smart Banking</span>
+            </h1>
+
+            <p>
+                Manage your account, deposit and withdraw money,
+                check your balance and view your complete transaction history.
+            </p>
+
+            <button onclick="showSection('account')">
+                Manage Account
+            </button>
+
+        </div>
+
+        <div class="hero-card">
+
+            <p>Available Balance</p>
+
+            <h2 id="heroBalance">₹0.00</h2>
+
+            <div class="card-bottom">
+                <span>Account Holder</span>
+                <strong id="heroName">Not Created</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+
+        <h2>Banking Dashboard</h2>
+
+        <div class="cards">
+
+            <div class="dashboard-card">
+                <div class="icon">💰</div>
+                <h3>Balance</h3>
+                <p id="balance">₹0.00</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">📥</div>
+                <h3>Total Deposits</h3>
+                <p id="totalDeposit">₹0.00</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">📤</div>
+                <h3>Total Withdrawals</h3>
+                <p id="totalWithdraw">₹0.00</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="icon">📊</div>
+                <h3>Transactions</h3>
+                <p id="transactionCount">0</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Account Section -->
+    <section id="account" class="section">
+
+        <div class="section-title">
+            <p>ACCOUNT MANAGEMENT</p>
+            <h2>Create Your Account</h2>
+        </div>
+
+
+        <div class="form-container">
+
+            <form id="accountForm">
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required>
+                </div>
+
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number"
+                        required>
+                </div>
+
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email"
+                        required>
+                </div>
+
+
+                <div class="input-group">
+                    <label>Initial Deposit</label>
+                    <input
+                        type="number"
+                        id="initialDeposit"
+                        placeholder="Enter initial deposit"
+                        min="0"
+                        required>
+                </div>
+
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Banking Operations -->
+    <section class="section operations">
+
+        <div class="section-title">
+            <p>BANKING OPERATIONS</p>
+            <h2>Manage Your Money</h2>
+        </div>
+
+
+        <div class="operation-grid">
+
+
+            <!-- Deposit -->
+            <div class="operation-card">
+
+                <div class="operation-icon">📥</div>
+
+                <h3>Deposit Money</h3>
+
+                <p>Add money to your bank account.</p>
+
+                <input
+                    type="number"
+                    id="depositAmount"
+                    placeholder="Enter amount">
+
+                <button onclick="depositMoney()">
+                    Deposit
+                </button>
+
+            </div>
+
+
+            <!-- Withdraw -->
+            <div class="operation-card">
+
+                <div class="operation-icon">📤</div>
+
+                <h3>Withdraw Money</h3>
+
+                <p>Withdraw money from your account.</p>
+
+                <input
+                    type="number"
+                    id="withdrawAmount"
+                    placeholder="Enter amount">
+
+                <button onclick="withdrawMoney()">
+                    Withdraw
+                </button>
+
+            </div>
+
+
+            <!-- Balance -->
+            <div class="operation-card">
+
+                <div class="operation-icon">💳</div>
+
+                <h3>Check Balance</h3>
+
+                <p>View your current account balance.</p>
+
+                <button onclick="checkBalance()">
+                    Check Balance
+                </button>
+
+                <div id="balanceMessage"></div>
+
+            </div>
+
+
+            <!-- Account Information -->
+            <div class="operation-card">
+
+                <div class="operation-icon">👤</div>
+
+                <h3>Account Information</h3>
+
+                <p>View your account details.</p>
+
+                <button onclick="showAccountInfo()">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Daily Limit -->
+    <section class="limit-section">
+
+        <div>
+
+            <p class="small-title">SECURITY FEATURE</p>
+
+            <h2>Daily Withdrawal Limit</h2>
+
+            <p>
+                Your daily withdrawal limit is
+                <strong>₹20,000</strong>.
+            </p>
+
+        </div>
+
+        <div class="limit-box">
+
+            <span>Today's Withdrawal</span>
+
+            <h2 id="dailyWithdraw">₹0</h2>
+
+            <div class="progress">
+                <div id="progressBar"></div>
+            </div>
+
+            <small>Limit: ₹20,000</small>
+
+        </div>
+
+    </section>
+
+
+    <!-- Account Information Display -->
+    <section id="accountInfo" class="section hidden">
+
+        <div class="section-title">
+            <p>ACCOUNT DETAILS</p>
+            <h2>Your Information</h2>
+        </div>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Account Number:</strong>
+                <span id="infoAccount">-</span>
+            </p>
+
+            <p>
+                <strong>Name:</strong>
+                <span id="infoName">-</span>
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                <span id="infoPhone">-</span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="infoEmail">-</span>
+            </p>
+
+            <p>
+                <strong>Balance:</strong>
+                <span id="infoBalance">₹0</span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Passbook -->
+    <section id="passbook" class="section">
+
+        <div class="section-title">
+
+            <p>TRANSACTION HISTORY</p>
+
+            <h2>Passbook</h2>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="transactionTable">
+
+                    <tr>
+                        <td colspan="4">
+                            No transactions yet
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="logo">
+            🏦 SecureBank
+        </div>
+
+        <p>
+            Banking System Mini Project | Java OOP
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
